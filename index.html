@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=1.0">
+    <title>Isakha International University - Result Portal</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #ccc;
+            z-index: -1;
+            display: none;
+        }
+        
+        @media print {
+            .watermark {
+                display: block;
+            }
+        }
+        
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-content {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #007bff;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .loading-stats {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="notice-banner">
+        <div class="notice-banner-content">
+            <span class="notice-label">NOTICE</span>
+            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                <i class="fas fa-graduation-cap"></i> 
+                Results for Bachelor of Laws (LLB Honours) have been published 
+                <i class="fas fa-bell"></i> 
+                Students can now check their semester results 
+                <i class="fas fa-calendar-check"></i> 
+                Published on: December 31, 2024 
+                <i class="fas fa-info-circle"></i> 
+                For any queries, contact the examination controller
+            </marquee>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Add watermark for print -->
+        <div class="watermark">Isakha International University</div>
+        
+        <header>
+            <div class="logo-container">
+                <div class="header-content">
+                    <a href="/" class="logo-link">
+                        <div class="university-logo">
+                            <img src="images/logo.png" alt="Isakha International University Logo">
+                        </div>
+                        <div class="header-text">
+                            <h1>Isakha International University</h1>
+                            <h2>Bachelor of Laws (LLB Honours)</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="header-decoration"></div>
+        </header>
+
+        <main>
+            <div class="search-container">
+                <h3><i class="fas fa-graduation-cap"></i> Student Result Portal</h3>
+                <div class="search-form">
+                    <div class="input-group">
+                        <i class="fas fa-user-graduate"></i>
+                        <input type="text" id="studentId" placeholder="Student ID">
+                        <label for="studentId">Student ID</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-calendar"></i>
+                        <select id="batch" required>
+                            <option value="" disabled>Select Batch</option>
+                            <option value="Spring 2030">Spring 2030</option>
+                            <option value="Fall 2029">Fall 2029</option>
+                            <option value="Spring 2029">Spring 2029</option>
+                            <option value="Fall 2028">Fall 2028</option>
+                            <option value="Spring 2028">Spring 2028</option>
+                            <option value="Fall 2027">Fall 2027</option>
+                            <option value="Spring 2027">Spring 2027</option>
+                            <option value="Fall 2026">Fall 2026</option>
+                            <option value="Spring 2026">Spring 2026</option>
+                            <option value="Fall 2025">Fall 2025</option>
+                            <option value="Spring 2025">Spring 2025</option>
+                            <option value="Fall 2024">Fall 2024</option>
+                            <option value="Spring 2024">Spring 2024</option>
+                            <option value="Fall 2023">Fall 2023</option>
+                            <option value="Summer 2023">Summer 2023</option>
+                            <option value="Spring 2023" selected>Spring 2023</option>
+                            <option value="Fall 2022">Fall 2022</option>
+                            <option value="Spring 2022">Spring 2022</option>
+                            <option value="Fall 2021">Fall 2021</option>
+                            <option value="Spring 2021">Spring 2021</option>
+                            <option value="Fall 2020">Fall 2020</option>
+                            <option value="Spring 2020">Spring 2020</option>
+                            <option value="Fall 2019">Fall 2019</option>
+                            <option value="Spring 2019">Spring 2019</option>
+                            <option value="Fall 2018">Fall 2018</option>
+                            <option value="Spring 2018">Spring 2018</option>
+                            <option value="Fall 2017">Fall 2017</option>
+                            <option value="Spring 2017">Spring 2017</option>
+                            <option value="Fall 2016">Fall 2016</option>
+                            <option value="Spring 2016">Spring 2016</option>
+                            <option value="Fall 2015">Fall 2015</option>
+                            <option value="Spring 2015">Spring 2015</option>
+                        </select>
+                        <label for="batch">Batch</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-book"></i>
+                        <select id="semester" required>
+                            <option value="" disabled>Semester</option>
+                            <option value="1" selected>1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                            <option value="5">5th Semester</option>
+                            <option value="6">6th Semester</option>
+                            <option value="7">7th Semester</option>
+                            <option value="8">8th Semester</option>
+                            <option value="9">9th Semester</option>
+                            <option value="10">10th Semester</option>
+                            <option value="11">11th Semester</option>
+                            <option value="12">12th Semester</option>
+                        </select>
+                        <label for="semester">Semester</label>
+                    </div>
+                    <button id="searchBtn" onclick="checkResult()">
+                        <i class="fas fa-search"></i> Check Result
+                    </button>
+                </div>
+            </div>
+
+            <div id="result-container" class="hidden">
+                <div id="student-details" class="student-info">
+                    <h3><i class="fas fa-user-graduate"></i> Student Information</h3>
+                </div>
+                <div id="result-body" class="result-section">
+                    <h3><i class="fas fa-chart-bar"></i> Semester Results</h3>
+                </div>
+                <div class="print-section">
+                    <button onclick="printResults()" class="print-button">
+                        <i class="fas fa-print"></i>
+                        <span>Print Result</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Isakha International University. All rights reserved.</p>
+            <div class="developer-credit">
+                <p><i class="fas fa-code"></i> DEVELOPED WITH EXCELLENCE BY</p>
+                <p><i class="fas fa-user"></i> Torykuzzaman Tonoy</p>
+                <p><i class="fas fa-user-graduate"></i> Student, Department of Law</p>
+                <p><i class="fas fa-university"></i> Isakha International University</p>
+                <p class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=100087289851558" target="_blank" rel="noopener noreferrer" title="Connect with me on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Connect with Developer</span>
+                    </a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <h3><i class="fas fa-sync fa-spin"></i> Loading Student Data</h3>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="loading-stats">
+                <div class="records-loaded">Records loaded: 0</div>
+                <div class="memory-usage">Memory usage: 0 MB</div>
+                <div class="loading-time">Loading time: 0 ms</div>
+            </div>
+        </div>
+    </div>
+    <script src="data/student-data-loader.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
